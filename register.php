@@ -10,15 +10,18 @@
 	padding: 0px;
 	}
 	body {
-	font-size: 120%;
-	background: #F8F8FF;
+		font-size: 120%;
+		background: #F8F8FF;
+		background: url('travel_login.jpg') no-repeat;
+		background-size: 1920px 1080px;
+		background-attachment: cover;
 	}
 
 	.header {
 	width: 30%;
 	margin: 50px auto 0px;
 	color: white;
-	background: #5F9EA0;
+	background: #8d0150;
 	text-align: center;
 	border: 1px solid #B0C4DE;
 	border-bottom: none;
@@ -53,7 +56,7 @@
 	padding: 10px;
 	font-size: 15px;
 	color: white;
-	background: #5F9EA0;
+	background: #8d0150;
 	border: none;
 	border-radius: 5px;
 	}
