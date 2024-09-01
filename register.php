@@ -78,7 +78,7 @@
   <div class="header">
   	<h2>Register</h2>
   </div>
-  <form method="post" action="register.php">
+  <form action="home.php" method="post">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>Username</label>
