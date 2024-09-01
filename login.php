@@ -3,7 +3,6 @@
 <html>
 <head>
   <title>Registration system PHP and MySQL</title>
-  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
    <style>
 	
 	* {
@@ -80,7 +79,7 @@
   <div class="header">
   	<h2>Login</h2>
   </div>
-  <form method="post" action="login.php">
+  <form method="post" action="home.php">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   		<label>Username</label>
