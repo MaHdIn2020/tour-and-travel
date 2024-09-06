@@ -50,146 +50,176 @@
 
 
 /* Home Section Start */
-.home{
-    width: 100%;
-    height: 90vh;
-    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url(./images/background\ img.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+.book {
+    background-color: #f0f0f5; /* Light background color */
+    padding: 50px 0; /* Add some padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333; /* Default text color */
 }
-.home .content{
+
+.booking-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for the form background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 400px;
     text-align: center;
-    padding-top: 200px;
+    color: #333; /* Dark text for form fields */
 }
-.home .content h5{
-    color: white;
-    font-size: 38px;
-    font-weight: 550;
-    text-shadow: 0px 1px 1px black;
+
+.booking-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
 }
-.home .content h1{
-    color: white;
-    font-size: 70px;
-    font-weight: 550;
-    text-shadow: 0px 1px 1px black;
-    margin-top: 5px;
+
+.booking-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
 }
-.changecontent::after{
-    content: ' ';
-    color: #ffa500;
-    text-shadow: 0px 1px 1px black;
-    animation: changetext 10s infinite linear;
-}
-@keyframes changetext{
-    0%{content: "France";}
-    10%{content: "Spain";}
-    20%{content: "United States";}
-    30%{content: "China";}
-    40%{content: "India";}
-    50%{content: "Pakistan";}
-    60%{content: "Italy";}
-    70%{content: "Turkey";}
-    80%{content: "Mexico";}
-    90%{content: "Germany";}
-    100%{content: "United kingdom";}
-}
-.home .content p{
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    text-shadow: 0px 1px 1px black;
-    margin-bottom: 30px;
-    margin-top: 5px;
-}
-.home .content a{
-    padding: 10px;
-    background: white;
-    color: black;
-    letter-spacing: 2px;
-    font-weight: 550;
+
+.booking-container input,
+.booking-container select,
+.booking-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    text-decoration: none;
-    transition: 0.5s;
+    font-size: 14px;
 }
-.home .content a:hover{
-    background: #ffa500;
-    color: white;
+
+.booking-container input:focus,
+.booking-container select:focus,
+.booking-container textarea:focus {
+    border-color: #5cb85c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(92, 184, 92, 0.5);
 }
-@media (max-width:850px){
-    .home{
-        background-position: 50%;
+
+.booking-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.booking-container button:hover {
+    background-color: #4cae4c;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .booking-container {
+        width: 90%;
     }
 }
-@media (max-width:450px){
-    .home .content h5{
-        font-size: 25px;
-    }
-    .home .content h1{
-        font-size: 38px;
-    }
-    .home .content p{
-        font-size: 13px;
+
+@media (max-width: 480px) {
+    .booking-container h2 {
+        font-size: 20px;
     }
 }
+
 /* Home Section End */
 
 
 /* Section Book Start */
-.book{
-    background: #f9f9f9;
-    padding: 50px;
+/* Styling the book section */
+.book {
+    background-image: url(.booking.jpg); /* Replace with the path to your image */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    padding: 50px 0; /* Add some padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff; /* White text to contrast with the background */
 }
-.main-text h1{
+
+.booking-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for the form background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 400px;
     text-align: center;
-    text-shadow: 0px 1px 1px black;
-    font-weight: 600;
+    color: #333; /* Dark text for form fields */
 }
-.main-text h1 span{
-    color: #ffa500;
+
+.booking-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
 }
-.book .card{
-    border-radius: 10px;
-    box-shadow: 0px 5px 5px -6px black;
+
+.booking-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
 }
-.book .row{
-    margin-top: 30px;
+
+.booking-container input,
+.booking-container select,
+.booking-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
 }
-.book form input{
-    padding: 10px;
-    color: black;
-    border: none;
+
+.booking-container input:focus,
+.booking-container select:focus,
+.booking-container textarea:focus {
+    border-color: #5cb85c;
     outline: none;
-    font-size: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 5px -6px black;
+    box-shadow: 0 0 5px rgba(92, 184, 92, 0.5);
 }
-.book form textarea{
+
+.booking-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #5cb85c;
     border: none;
-    border-radius: 10px;
-    resize: none;
-    box-shadow: 0px 5px 5px -6px black;
-    height: 200px;
-}
-.book .submit{
-    width: 160px;
+    border-radius: 5px;
+    color: #fff;
     font-size: 16px;
-    font-weight: 550;
-    background: #ffa500;
-    color: white;
-    margin-top: 10px;
-    transition: 0.5s;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.book .submit:hover{
-    width: 170px;
+
+.booking-container button:hover {
+    background-color: #4cae4c;
 }
-@media (max-width:765px){
-    .book{
-        padding: 0;
-    }
-    .main-text h1{
-        padding: 20px;
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .booking-container {
+        width: 90%;
     }
 }
+
+@media (max-width: 480px) {
+    .booking-container h2 {
+        font-size: 20px;
+    }
+}
+
 /* Section Book End */
 
 
@@ -390,3 +420,4 @@
     background: #ffa500;
 }
 /* Footer End */
+
