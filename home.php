@@ -39,7 +39,7 @@
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link active" href="home.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#book">Book</a>
@@ -51,7 +51,7 @@
                 <a class="nav-link" href="#services">Services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#gallary">Gallary</a>
+                <a class="nav-link" href="#gallary">Gallery</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#about">About</a>
@@ -87,37 +87,34 @@
 
 
     <!-- Section Book Start -->
-    <section class="book" id="book">
-      <div class="container">
+<section class="book">
+  <div class="booking-container">
+        <h2>Book Your Tour</h2>
+        <form action="booking.php" method="POST">
+            <label for="destination">Destination:</label>
+            <select name="destination" id="destination" required>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="France">France</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="Italy">Italy</option>
+                <option value="India">India</option>
+                <option value="United States">United States</option>
+            </select>
 
-        <div class="main-text">
-          <h1><span>B</span>ook</h1>
-        </div>
-        
-        <div class="row">
+            <label for="from_date">From Date:</label>
+            <input type="date" name="from_date" id="from_date" required>
 
-          <div class="col-md-6 py-3 py-md-0">
-            <div class="card">
-              <img src="./images/book-img.png" alt="">
-            </div>
-          </div>
+            <label for="to_date">To Date:</label>
+            <input type="date" name="to_date" id="to_date" required>
 
-          <div class="col-md-6 py-3 py-md-0">
-            <form action="#">
+            <label for="message">Additional Message:</label>
+            <textarea name="message" id="message" rows="5"></textarea>
 
-              <input type="text" class="form-control" placeholder="Where To" required=""><br>
-              <input type="text" class="form-control" placeholder="How Many" required=""><br>
-              <input type="date" class="form-control" placeholder="Arrivals" required=""><br>
-              <input type="date" class="form-control" placeholder="Leaving" required=""><br>
-              <textarea class="form-control" rows="5" name="text" placeholder="Enter Your Name &amp; Details"></textarea>
-              <input type="submit" value="Book Now" class="submit" required="">
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+</section>
 
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </section>
     <!-- Section Book End -->
 
 
@@ -383,7 +380,7 @@
       <div class="container">
 
         <div class="main-txt">
-          <h1><span>G</span>allary</h1>
+          <h1><span>G</span>allery</h1>
         </div>
 
         <div class="row" style="margin-top: 30px;">
