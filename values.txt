@@ -4,12 +4,12 @@ INSERT INTO users (username, email, phone, password, usertype) VALUES
 ('bob_johnson', 'bob.johnson@example.com', '+1122334455', '3456', 'admin'),
 ('alice_williams', 'alice.williams@example.com', '+2233445566', '4567', 'user'),
 ('charlie_brown', 'charlie.brown@example.com', '+3344556677', '5678', 'agency');
-INSERT INTO book (where_to, from_date, to_date, user_id) VALUES
-('France', '2024-10-01', '2024-10-07', 1),
-('India', '2024-11-15', '2024-11-20', 2),
-('Pakistan', '2024-12-01', '2024-12-10', 3),
-('Italy', '2024-10-20', '2024-10-25', 4),
-('United Kingdom', '2024-11-05', '2024-11-12', 5);
+INSERT INTO book (where_to, from_date, to_date, message, user_id) VALUES
+('France', '2024-10-01', '2024-10-07', '', 1),
+('India', '2024-11-15', '2024-11-20', '', 2),
+('Pakistan', '2024-12-01', '2024-12-10', '',3),
+('Italy', '2024-10-20', '2024-10-25', '', 4),
+('United Kingdom', '2024-11-05', '2024-11-12', '', 5);
 INSERT INTO packages (pack_id, pack_name, price, agency_id) VALUES
 (1,'France', 500, 1),
 (2,'India', 500, 2),
