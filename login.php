@@ -12,26 +12,30 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $conn->real_escape_string($_POST['username']);
+    $username = $_POST['username'];
     $password = $_POST['password'];
     $category = $_POST['category'];
 
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            // Redirect to home page after successful login
-            header("Location: home.php");
-            exit();
+    if (empty($username) || empty($password)) {
+        echo "<div class='error'>Please fill in all fields!</div>";
+      } 
+    else {
+        // SQL query to fetch user data
+        $sql = "SELECT * FROM users WHERE username='$username' AND password='$password' AND usertype='$category'";
+        $result = mysqli_query($conn, $sql);
+    
+        if (mysqli_num_rows($result) > 0) {
+          // Login successful (replace with session management or redirection)
+          header("Location: home.php");
+          exit();
+          // ... handle successful login (e.g., start a session or redirect)
         } else {
-            echo "Invalid password.";
+          echo "<div class='error'>Invalid username, password, or category!</div>";
+          header("Location: login.html");
         }
-    } else {
-        echo "No user found with that username.";
+      }
     }
-}
+    
 
 $conn->close();
 ?>
