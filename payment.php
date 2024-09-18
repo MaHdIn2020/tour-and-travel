@@ -20,21 +20,15 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Get the form data and escape to prevent SQL injection
-    $full_name = $conn->real_escape_string($_POST['full_name']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $address = $conn->real_escape_string($_POST['address']);
-    $city = $conn->real_escape_string($_POST['city']);
-    $state = $conn->real_escape_string($_POST['state']);
-    $zip_code = $conn->real_escape_string($_POST['zip_code']);
     $card_name = $conn->real_escape_string($_POST['card_name']);
+    $phone = $conn->real_escape_string($_POST['phone']);
     $card_number = $conn->real_escape_string($_POST['card_number']);
-    $exp_month = $conn->real_escape_string($_POST['exp_month']);
-    $exp_year = $conn->real_escape_string($_POST['exp_year']);
+    $amount = $conn->real_escape_string($_POST['amount']);
     $cvv = $conn->real_escape_string($_POST['cvv']);
 
     // SQL query to insert the data
-    $sql = "INSERT INTO payments (full_name, email, address, city, state, zip_code, card_name, card_number, exp_month, exp_year, cvv)
-            VALUES ('$full_name', '$email', '$address', '$city', '$state', '$zip_code', '$card_name', '$card_number', '$exp_month', '$exp_year', '$cvv')";
+    $sql = "INSERT INTO payment (name_on_card, phone, card_num, amount, cvv)
+            VALUES ('$card_name', '$phone', '$card_number', '$amount', '$cvv')";
 
     if ($conn->query($sql) === TRUE) {
         // Get the last inserted ID
