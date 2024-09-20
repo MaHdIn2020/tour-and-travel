@@ -1,0 +1,98 @@
+CREATE DATABASE project;
+
+
+USE project;
+
+
+CREATE TABLE users (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(15),
+    password VARCHAR(255) NOT NULL,
+    usertype ENUM('user', 'agency', 'admin') NOT NULL
+);
+
+
+CREATE TABLE book (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    where_to VARCHAR(255) NOT NULL,
+    from_date DATE NOT NULL,
+    to_date DATE NOT NULL,
+    message VARCHAR(200),
+    user_id INT,  
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE packages (
+    pack_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    pack_name VARCHAR(255) NOT NULL,
+    description VARCHAR(500) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    agency_id INT,
+    CONSTRAINT fk_agency FOREIGN KEY (agency_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Confirms (
+    book_id INT,
+    pack_id INT,
+    PRIMARY KEY (book_id, pack_id),
+    CONSTRAINT fk_booking FOREIGN KEY (book_id) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_package FOREIGN KEY (pack_id) REFERENCES packages(pack_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE payment (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name_on_card VARCHAR(255) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    card_num VARCHAR(16) NOT NULL,
+    amount INT NOT NULL,
+    cvv INT NOT NULL,
+    status VARCHAR(20) DEFAULT 'pending',
+    book_id INT UNIQUE,  -- One-to-one relationship with 'bookings' table
+    admin_id INT,  -- One-to-many relationship with 'users' (admin controls)
+    CONSTRAINT fk_booking_payment FOREIGN KEY (book_id) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_admin_payment FOREIGN KEY (admin_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+-- Insert dummy data into users table
+INSERT INTO users (username, email, phone, password, usertype) VALUES
+('john_doe', 'john@example.com', '1234567890', 'hashed_password_1', 'user'),
+('jane_agency', 'jane@example.com', '0987654321', 'hashed_password_2', 'agency'),
+('admin_user', 'admin@example.com', '1122334455', 'hashed_password_3', 'admin'),
+('alice_wonder', 'alice@example.com', '1231231234', 'hashed_password_4', 'user'),
+('bob_agency', 'bob@example.com', '4564564567', 'hashed_password_5', 'agency');
+
+-- Insert dummy data into packages table
+INSERT INTO packages (pack_name, description, price, image, agency_id) VALUES
+('London Tour', 'Explore the beautiful sights of London, including the Tower of London and Buckingham Palace.', 500.00, 'https://example.com/images/london.jpg', 2),
+('Paris Adventure', 'Experience the romance of Paris with visits to the Eiffel Tower and Louvre Museum.', 400.00, 'https://example.com/images/paris.jpg', 2),
+('Pakistan Heritage', 'Discover the rich culture and history of Pakistan with guided tours to famous landmarks.', 299.00, 'https://example.com/images/pakistan.jpg', 2),
+('Italian Escapade', 'Indulge in the exquisite beauty of Italy, from Venice to Florence.', 300.00, 'https://example.com/images/italy.jpg', 5),
+('USA Road Trip', 'A thrilling road trip across the United States, visiting iconic locations.', 500.00, 'https://example.com/images/usa.jpg', 5);
+
+-- Insert dummy data into book table
+INSERT INTO book (where_to, from_date, to_date, message, user_id) VALUES
+('London Tour', '2024-10-01', '2024-10-05', 'Looking forward to this trip!', 1),
+('Paris Adventure', '2024-11-01', '2024-11-07', 'Can’t wait to see the Eiffel Tower!', 1),
+('Pakistan Heritage', '2024-12-01', '2024-12-10', 'Excited for the cultural experiences!', 1),
+('Italian Escapade', '2024-09-15', '2024-09-20', 'Ready for some pasta!', 4),
+('USA Road Trip', '2024-12-15', '2024-12-25', 'Let’s hit the road!', 4);
+
+-- Insert dummy data into Confirms table
+INSERT INTO Confirms (book_id, pack_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
+
+-- Insert dummy data into payment table
+INSERT INTO payment (name_on_card, phone, card_num, amount, cvv, status, book_id, admin_id) VALUES
+('John Doe', '1234567890', '1111222233334444', 500, 123, 'completed', 1, 3),
+('Alice Wonder', '1231231234', '4444333322221111', 400, 456, 'pending', 2, 3),
+('John Doe', '1234567890', '5555444433332222', 299, 789, 'completed', 3, 3),
+('Alice Wonder', '1231231234', '6666555544443333', 300, 321, 'pending', 4, 3),
+('Alice Wonder', '1231231234', '7777666655554444', 500, 654, 'completed', 5, 3);
