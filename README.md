@@ -1,4 +1,3 @@
-Here's a README file for your Tour and Travel Booking System project:
 
 ---
 
