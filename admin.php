@@ -10,9 +10,8 @@
 <div class="sidebar">
         <h2>Admin Panel</h2>
         <ul>
-            <li><a href="admin_panel.php" class="active">Dashboard</a></li>
-            <li><a href="manage_payments.php">Manage Payments</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="admin.php" class="active">Dashboard</a></li>
+            <li><a href="login.html">Logout</a></li>
         </ul>
 </div>
 <div class="main-content">
