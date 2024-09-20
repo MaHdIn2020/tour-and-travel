@@ -1,4 +1,5 @@
 <?php
+session_start(); // Ensure the session is started
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -16,13 +17,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Retrieve admin_id from the session
+$admin_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
 // Check if an action is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $payment_id = $_POST['payment_id'];
 
     if (isset($_POST['approve'])) {
-        // Approve payment (for this example, you might just log the approval)
-        $sql = "UPDATE payment SET status = 'approved' WHERE id = $payment_id";
+        // Approve payment
+        $sql = "UPDATE payment SET status = 'approved', admin_id = '$admin_id' WHERE id = $payment_id";
         if ($conn->query($sql) === TRUE) {
             echo "Payment with ID $payment_id approved successfully.";
         } else {
