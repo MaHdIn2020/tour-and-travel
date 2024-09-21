@@ -109,6 +109,24 @@
 
 
   <!-- Section Book Start -->
+  <?php
+session_start(); // Start the session
+
+// Database connection credentials
+$host = "localhost";
+$dbUsername = "root";
+$dbPassword = "";
+$dbname = "project"; // Your database name
+
+// Create connection
+$conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
   <section class="book" id="book">
     <div class="container">
 
@@ -128,31 +146,36 @@
 
 
         <div class="col-md-6 py-3 py-md-0">
-          <!-- <form action="booking.php" method="POST">
-            <input type="text" class="form-control" placeholder="Name" required=""><br>
-            <input type="text" class="form-control" placeholder="Where To(Package Name)" required=""><br>        
-            <input type="date" class="form-control" placeholder="From Date" required=""><br>
-            <input type="date" class="form-control" placeholder="To Date" required=""><br>
-            <textarea class="form-control" rows="5" name="text" placeholder="Messages &amp; Details"></textarea>
-            <input type="submit" value="Book Now" class="submit" required="">
-          </form> -->
-          <form action="booking.php" method="POST">
-              <input type="text" class="form-control" name="destination" placeholder="Where To (Package Name)" required><br>
-              <input type="date" class="form-control" name="from_date" placeholder="From Date" required><br>
-              <input type="date" class="form-control" name="to_date" placeholder="To Date" required><br>
-              <textarea class="form-control" rows="5" name="message" placeholder="Messages & Details"></textarea>
-              <input type="submit" value="Book Now" class="submit">
-          </form>
-        </div>
+    <form action="booking.php" method="POST">
+        <h4>Select Packages:</h4>
+        <?php
+        // Fetch all packages for display
+        $result = $conn->query("SELECT * FROM packages");
+        while ($row = $result->fetch_assoc()):
+        ?>
+            <div>
+                <input type="checkbox" name="packages[]" value="<?php echo $row['pack_id']; ?>">
+                <?php echo $row['pack_name']; ?> - $<?php echo number_format($row['price'], 2); ?>
+            </div>
+        <?php endwhile; ?>
+        <br>
+        <input type="date" class="form-control" name="from_date" placeholder="From Date" required><br>
+        <input type="date" class="form-control" name="to_date" placeholder="To Date" required><br>
+        <textarea class="form-control" rows="5" name="message" placeholder="Messages & Details"></textarea>
+        <input type="submit" value="Book Now" class="submit">
+    </form>
+</div>
 
 
       </div>
     </div>
   </section>
+
+
   <!-- Section Book End -->
 
 
-  <?php
+<?php
 // Database connection
 $servername = "localhost";
 $username = "root";
