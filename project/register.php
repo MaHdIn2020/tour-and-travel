@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
     $email = $conn->real_escape_string($_POST['email']);
 	$phone = $conn->real_escape_string($_POST['phone']);
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = $conn->real_escape_string($_POST['password_1']);
 
     $sql = "INSERT INTO users (username, email,phone, password) VALUES ('$username', '$email', '$phone', '$password')";
 
