@@ -1,6 +1,6 @@
 <?php
-// Database connection credentials
 session_start();
+// Database connection credentials
 $host = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
@@ -14,29 +14,47 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handling the form submission
+// Assuming user_id is stored in session upon login
+$user_id = $_SESSION['user_id']; // Capture the logged-in user's ID
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the inputs and escape them to prevent SQL injection
-    $destination = $conn->real_escape_string($_POST['destination']);
-    $from_date = $conn->real_escape_string($_POST['from_date']); // Already in 'YYYY-MM-DD' format
-    $to_date = $conn->real_escape_string($_POST['to_date']);     // Already in 'YYYY-MM-DD' format
+    // Get the inputs
+    $from_date = $conn->real_escape_string($_POST['from_date']);
+    $to_date = $conn->real_escape_string($_POST['to_date']);
     $message = $conn->real_escape_string($_POST['message']);
+    $selected_packages = $_POST['packages']; // Get selected packages
 
-    // Insert the data into the database
-    $sql = "INSERT INTO book (where_to, from_date, to_date, message) 
-            VALUES ('$destination', '$from_date', '$to_date', '$message')";
+    foreach ($selected_packages as $pack_id) {
+        // Fetch the package name using the pack_id
+        $package_query = "SELECT pack_name FROM packages WHERE pack_id = '$pack_id'";
+        $package_result = $conn->query($package_query);
 
-    if ($conn->query($sql) === TRUE) {
-        // Get the last inserted booking ID
-        $book_id = $conn->insert_id;
+        if ($package_result && $package_result->num_rows > 0) {
+            $package_row = $package_result->fetch_assoc();
+            $where_to = $conn->real_escape_string($package_row['pack_name']); // Use the package name here
 
-        // Store the book_id in session for use in payment
-        $_SESSION['book_id'] = $book_id;
-        header("Location: payment.php");
-        exit();
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+            // Insert the booking details into the database for each package
+            $sql = "INSERT INTO book (where_to, from_date, to_date, message, user_id) 
+                    VALUES ('$where_to', '$from_date', '$to_date', '$message', '$user_id')";
+
+            if ($conn->query($sql) === TRUE) {
+                // Optionally handle successful insertion (e.g., store book_id for confirmation)
+                $book_id = $conn->insert_id;
+
+                // Now insert into confirms table
+                $confirm_sql = "INSERT INTO Confirms (book_id, pack_id) VALUES ('$book_id', '$pack_id')";
+                $conn->query($confirm_sql);
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        } else {
+            echo "Error fetching package name for pack_id: $pack_id<br>";
+        }
     }
+
+    // Redirect to payment page or display success message
+    header("Location: payment.php");
+    exit();
 }
 
 // Close the database connection
