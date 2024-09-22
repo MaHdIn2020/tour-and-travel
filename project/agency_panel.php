@@ -8,14 +8,13 @@ $dbUsername = "root";
 $dbPassword = "";
 $dbname = "project";
 
-// Create connection
+// Database Connection
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Ensure the agency is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['usertype'] !== 'agency') {
     header("Location: login.html");
     exit();
@@ -23,36 +22,31 @@ if (!isset($_SESSION['user_id']) || $_SESSION['usertype'] !== 'agency') {
 
 $agency_id = $_SESSION['user_id']; // Get agency ID from session
 
-// Handle form submission to add a new package
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_package'])) {
     $package_name = $_POST['pack_name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $image_url = $_POST['image'];
 
-    // Insert package with agency_id
     $sql = "INSERT INTO packages (pack_name, description, price, image, agency_id) VALUES ('$package_name', '$description', '$price', '$image_url', '$agency_id')";
 
-    if ($conn->query($sql) === TRUE) {
-        // Optional: Display a success message
-    } else {
+    if ($conn->query($sql) === TRUE) {} 
+    else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 
-// Handle package deletion
 if (isset($_GET['delete'])) {
     $pack_name = $_GET['delete'];
     $sql = "DELETE FROM packages WHERE pack_name='$pack_name'";
 
     if ($conn->query($sql) === TRUE) {
-        // Optional: Display a success message
     } else {
         echo "Error deleting package: " . $conn->error;
     }
 }
 
-// Fetch all packages for display
+// Will display the Packages
 $result = $conn->query("SELECT * FROM packages WHERE agency_id='$agency_id'");
 
 $conn->close();
