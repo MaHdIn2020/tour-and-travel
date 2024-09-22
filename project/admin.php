@@ -33,9 +33,8 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- PHP will dynamically populate this table with payment data -->
                 <?php
-                // Connect to the database
+                // Database Connection 
                 $host = "localhost";
                 $dbUsername = "root";
                 $dbPassword = "";
@@ -47,7 +46,6 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                // Fetch payment records
                 $sql = "SELECT * FROM payment";
                 $result = $conn->query($sql);
 
