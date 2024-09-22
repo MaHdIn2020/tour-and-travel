@@ -59,11 +59,11 @@ CREATE TABLE payment (
 );
 -- Insert dummy data into users table
 INSERT INTO users (username, email, phone, password, usertype) VALUES
-('john_doe', 'john@example.com', '1234567890', 'hashed_password_1', 'user'),
-('jane_agency', 'jane@example.com', '0987654321', 'hashed_password_2', 'agency'),
-('admin_user', 'admin@example.com', '1122334455', 'hashed_password_3', 'admin'),
-('alice_wonder', 'alice@example.com', '1231231234', 'hashed_password_4', 'user'),
-('bob_agency', 'bob@example.com', '4564564567', 'hashed_password_5', 'agency');
+('john_doe', 'john@example.com', '1234567890', '1234', 'user'),
+('jane_agency', 'jane@example.com', '0987654321', '1234', 'agency'),
+('admin_user', 'admin@example.com', '1122334455', '1234', 'admin'),
+('alice_wonder', 'alice@example.com', '1231231234', '1234', 'user'),
+('bob_agency', 'bob@example.com', '4564564567', '1234', 'agency');
 
 -- Insert dummy data into packages table
 INSERT INTO packages (pack_name, description, price, image, agency_id) VALUES
