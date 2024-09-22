@@ -23,6 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $to_date = $conn->real_escape_string($_POST['to_date']);
     $message = $conn->real_escape_string($_POST['message']);
     $selected_packages = $_POST['packages']; // Get selected packages
+    if (strtotime($to_date) <= strtotime($from_date)) {
+        $_SESSION['error_message'] = "Error: To date must be greater than From date.";
+        header("Location: home.php");
+        exit();
+    }
 
     // Initialize an array to hold book_ids and total amount
     $_SESSION['book_ids'] = [];
