@@ -8,7 +8,6 @@ $dbUsername = "root";
 $dbPassword = "";
 $dbname = "project";
 
-// Create connection
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
 if ($conn->connect_error) {
@@ -18,25 +17,23 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
-    $category = $conn->real_escape_string($_POST['category']); // Either 'user', 'admin', or 'agency'
+    $category = $conn->real_escape_string($_POST['category']); 
 
     if (empty($username) || empty($password)) {
         echo "<div class='error'>Please fill in all fields!</div>";
     } else {
-        // SQL query to fetch user data
+        
         $sql = "SELECT * FROM users WHERE username='$username' AND password='$password' AND usertype='$category'";
         $result = $conn->query($sql);
     
         if ($result->num_rows > 0) {
-            // Fetch the user data
+            
             $row = $result->fetch_assoc();
             
-            // Set session variables
             $_SESSION['username'] = $row['username'];
             $_SESSION['usertype'] = $row['usertype'];
-            $_SESSION['user_id'] = $row['id']; // Store user ID in the session
+            $_SESSION['user_id'] = $row['id']; 
             
-            // Redirect based on usertype
             switch ($row['usertype']) {
                 case 'user':
                     header("Location: home.php");
@@ -51,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             echo "<div class='error'>Invalid username, password, or usertype!</div>";
-            header("refresh:2;url=login.html"); // Redirects back to login after 2 seconds
+            header("refresh:2;url=login.html"); 
         }
     }
 }
