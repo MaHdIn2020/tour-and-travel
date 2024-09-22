@@ -4,7 +4,6 @@ $dbUsername = "root";
 $dbPassword = "";
 $dbname = "project";
 
-// Create connection
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
 if ($conn->connect_error) {
@@ -20,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO users (username, email,phone, password) VALUES ('$username', '$email', '$phone', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-        // Redirect to login page after successful registration
         header("Location: login.html");
         exit();
     } else {
