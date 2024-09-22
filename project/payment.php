@@ -3,47 +3,44 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Database connection details
+// Database connection 
 $host = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
 $dbname = "project";
 
-// Create connection
+
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the form data and escape to prevent SQL injection
+    
     $card_name = $conn->real_escape_string($_POST['card_name']);
     $phone = $conn->real_escape_string($_POST['phone']);
     $card_number = $conn->real_escape_string($_POST['card_number']);
-    $amount = $_SESSION['total_amount']; // Get total amount from session
+    $amount = $_SESSION['total_amount']; 
     $cvv = $conn->real_escape_string($_POST['cvv']);
 
-    // Check if book_ids exist in the session
+    
     if (!isset($_SESSION['book_ids'])) {
         die("No book_ids found in session!");
     }
 
-    // Loop through each book_id and insert payment records
     foreach ($_SESSION['book_ids'] as $book_id) {
         // SQL query to insert the data
         $sql = "INSERT INTO payment (name_on_card, phone, card_num, amount, cvv, book_id)
                 VALUES ('$card_name', '$phone', '$card_number', '$amount', '$cvv', '$book_id')";
 
         if ($conn->query($sql) === TRUE) {
-            // Payment successfully recorded for this book_id
-            // Prepare data for SSLCommerz
             $post_data = array();
             $post_data['store_id'] = "hifiv66eabaf453ef3";
             $post_data['store_passwd'] = "hifiv66eabaf453ef3@ssl";
-            $post_data['total_amount'] = $amount; // Total amount for all book_ids
+            $post_data['total_amount'] = $amount; 
             $post_data['currency'] = "BDT";
             $post_data['tran_id'] = "SSLCZ_TEST_" . uniqid();
             $post_data['success_url'] = "http://localhost/project/success.php";
@@ -59,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             curl_setopt($handle, CURLOPT_POST, 1);
             curl_setopt($handle, CURLOPT_POSTFIELDS, $post_data);
             curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, FALSE); // Keep it false if running from local PC
+            curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, FALSE); 
 
             $content = curl_exec($handle);
             $code = curl_getinfo($handle, CURLINFO_HTTP_CODE);
