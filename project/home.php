@@ -113,18 +113,18 @@
 
   <!-- Section Book Start -->
   <?php
-session_start(); // Start the session
+session_start(); 
 
-// Database connection credentials
+// Database connection 
 $host = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
-$dbname = "project"; // Your database name
+$dbname = "project"; 
 
-// Create connection
+
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -152,7 +152,7 @@ if ($conn->connect_error) {
     <form action="booking.php" method="POST">
         <h4>Select Packages:</h4>
         <?php
-        // Fetch all packages for display
+        
         $result = $conn->query("SELECT * FROM packages");
         while ($row = $result->fetch_assoc()):
         ?>
@@ -183,22 +183,22 @@ if ($conn->connect_error) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "project"; // Replace with your database name
+$dbname = "project"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch all packages for display
+
 $result = $conn->query("SELECT * FROM packages");
 
 $conn->close();
 ?>
 
-<!-- Section Packages Start -->
+
 <section class="packages" id="packages">
     <div class="container">
         <div class="main-txt">
@@ -209,7 +209,7 @@ $conn->close();
         <?php while($row = $result->fetch_assoc()): ?>
             <div class="col-md-4 py-3 py-md-0">
                 <div class="card">
-                    <!-- Use the correct field name for the image URL -->
+                    
                     <img src="<?php echo $row['image']; ?>" alt="<?php echo $row['pack_name']; ?>" class="card-img-top">
                     <div class="card-body">
                         <h3><?php echo $row['pack_name']; ?></h3>
