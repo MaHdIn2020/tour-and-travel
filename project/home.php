@@ -1,10 +1,4 @@
-<?php
-include("db.php");
-if (!isset($_SESSION['user_id']) || !in_array($_SESSION['usertype'], ['admin', 'agency', 'user'])) {
-  header("Location: login.html");
-  exit();
-}
-?>
+
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
