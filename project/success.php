@@ -51,7 +51,11 @@ if($code == 200 && !( curl_errno($handle)))
 	$APIConnect = $result->APIConnect;
 	$validated_on = $result->validated_on;
 	$gw_version = $result->gw_version;
-    echo $status." ". $tran_date." ".$tran_id." ".$card_type;
+    echo '<script>
+        var msg = "Thank you for your payment! We have received your payment and it is currently under review. Our admin team will review and approve your payment shortly. You will receive an update on the status of your payment via email. Please check your email for further instructions.";
+        alert(msg);
+        setTimeout(function(){ window.location.href = "home.php"; }, 2000);
+      </script>';
 
 } 
 else {
