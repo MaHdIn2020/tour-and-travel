@@ -45,7 +45,10 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-
+                if (!isset($_SESSION['user_id']) || $_SESSION['usertype'] !== 'admin') {
+                    header("Location: login.html");
+                    exit();
+                }
                 $sql = "SELECT * FROM payment";
                 $result = $conn->query($sql);
 
