@@ -68,6 +68,9 @@
             <li class="nav-item">
               <a class="nav-link" href="#about">About Us</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Logout</a>
+            </li>
            
           </ul>
           <form class="d-flex">
