@@ -67,11 +67,11 @@ INSERT INTO users (username, email, phone, password, usertype) VALUES
 
 -- Insert dummy data into packages table
 INSERT INTO packages (pack_name, description, price, image, agency_id) VALUES
-('London Tour', 'Explore the beautiful sights of London, including the Tower of London and Buckingham Palace.', 500.00, 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 2),
-('Paris Adventure', 'Experience the romance of Paris with visits to the Eiffel Tower and Louvre Museum.', 400.00, 'https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 2),
-('Pakistan Heritage', 'Discover the rich culture and history of Pakistan with guided tours to famous landmarks.', 299.00, 'https://images.pexels.com/photos/1590114/pexels-photo-1590114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 2),
-('Italian Escapade', 'Indulge in the exquisite beauty of Italy, from Venice to Florence.', 300.00, 'https://images.pexels.com/photos/2064827/pexels-photo-2064827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 5),
-('USA Road Trip', 'A thrilling road trip across the United States, visiting iconic locations.', 500.00, 'https://images.pexels.com/photos/356844/pexels-photo-356844.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 5);
+('London Tour', 'Explore the beautiful sights of London, including the Tower of London and Buckingham Palace.', 90000.00, 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 2),
+('Paris Adventure', 'Experience the romance of Paris with visits to the Eiffel Tower and Louvre Museum.', 80000.00, 'https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 2),
+('Pakistan Heritage', 'Discover the rich culture and history of Pakistan with guided tours to famous landmarks.', 40000.00, 'https://images.pexels.com/photos/1590114/pexels-photo-1590114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 2),
+('Italian Escapade', 'Indulge in the exquisite beauty of Italy, from Venice to Florence.', 99000.00, 'https://images.pexels.com/photos/2064827/pexels-photo-2064827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 5),
+('USA Road Trip', 'A thrilling road trip across the United States, visiting iconic locations.', 120000.00, 'https://images.pexels.com/photos/356844/pexels-photo-356844.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 5);
 
 -- Insert dummy data into book table
 INSERT INTO book (where_to, from_date, to_date, message, user_id) VALUES
